@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mario Cerezo-Pizarro — No me molestes, estoy aprendiendo</title>
+<style>
+:root{--blue:#006fcd;--deep:#00439c;--navy:#001b3d;--ice:#eef8ff;--ink:#07182b;--muted:#53677b;--line:#cfe6f8;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#fff}a{color:inherit;text-decoration:none}.wrap{width:min(1200px,calc(100% - 48px));margin:auto}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #dcecf8}.navin{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:17px;font-weight:900;letter-spacing:-.04em}.brand small{display:block;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0}.links{display:flex;gap:25px;font-size:12px}.links a{padding:26px 0 21px}.links a:hover{color:var(--blue);border-bottom:3px solid var(--blue)}
+.hero{min-height:calc(100vh - 72px);display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(120deg,#d9efff 0,#fff 27%,#fff 72%,#e8f6ff 100%)}.hero:before{content:"△  ×  □";position:absolute;left:-25px;top:75px;font-size:88px;line-height:2.1;font-weight:700;color:rgba(0,111,205,.16);transform:rotate(-8deg)}.hero:after{content:"○";position:absolute;right:7%;top:9%;font-size:100px;font-weight:300;color:rgba(0,111,205,.18)}.hero-inner{text-align:center;position:relative;z-index:2;padding:45px 0 55px}.hero-logo{display:block;width:min(94%,1100px);max-height:48vh;object-fit:contain;margin:auto}.strap{display:inline-block;font-size:clamp(19px,2vw,27px);font-weight:650;color:var(--navy);margin:20px 0 32px;border-bottom:4px solid var(--blue);padding:0 8px 4px}.scroll{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--deep)}.scroll b{font-size:32px;line-height:1}
+section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%,#dff1ff)}.intro-grid{display:grid;grid-template-columns:250px 1fr 350px;gap:42px;align-items:center}.portrait{width:240px;aspect-ratio:1;border-radius:50%;object-fit:cover;border:8px solid #fff;box-shadow:0 18px 55px rgba(0,67,156,.14)}.eyebrow{color:var(--blue);font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.intro h1,.section-head h2{font-size:clamp(37px,4.5vw,60px);line-height:.98;letter-spacing:-.05em;margin:9px 0 15px}.lead{font-size:17px;color:var(--muted);max-width:650px}.avatar{width:100%;max-height:430px;object-fit:contain;filter:drop-shadow(0 20px 25px rgba(0,67,156,.17))}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:23px}
+.profile-label{margin:28px 0 9px;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.profiles{display:flex;gap:8px;flex-wrap:wrap}.profile{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(255,255,255,.82);padding:8px 11px;border-radius:999px;font-size:12px;font-weight:850;color:var(--deep);transition:.18s ease}.profile:hover{background:var(--deep);color:#fff;transform:translateY(-2px)}
+.source-panel{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;background:var(--ice);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin:0 0 28px}.source-panel h3{margin:0 0 6px;font-size:17px}.source-panel p{margin:0;color:var(--muted);font-size:13px}.source-links{display:flex;gap:7px;flex-wrap:wrap;align-content:flex-start}.source-links a{font-size:11px;font-weight:850;border:1px solid #b9dbf4;background:#fff;color:var(--deep);border-radius:999px;padding:6px 9px}.source-links a:hover{background:var(--deep);color:#fff}.btn{border:1px solid var(--deep);padding:10px 15px;border-radius:9px;font-size:13px;font-weight:800}.btn.primary{background:var(--deep);color:#fff}.btn:hover{transform:translateY(-2px)}
+.work{background:#fff}.section-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:38px}.section-head p{color:var(--muted);max-width:570px}.area-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.area{background:linear-gradient(180deg,#eef8ff,#e2f2ff);border:1px solid #d5ebfb;border-radius:15px;padding:22px 13px;text-align:center;font-weight:750;min-height:142px}.area .icon{font-size:35px;display:block;margin-bottom:10px}.area:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,67,156,.10)}
+.research{background:linear-gradient(135deg,#006fcd,#003a84);color:#fff}.research-lines{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.research-line{position:relative;background:rgba(0,27,61,.48);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:30px;min-height:285px;overflow:hidden;transition:.2s ease}.research-line:hover{transform:translateY(-4px);background:rgba(0,27,61,.62)}.research-line .num{position:absolute;right:20px;top:8px;font-size:76px;font-weight:900;color:rgba(255,255,255,.08);line-height:1}.research-line .r-icon{font-size:38px}.research-line h3{font-size:27px;line-height:1.08;margin:17px 0 12px}.research-line p{color:#d9efff;margin:0 0 18px}.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{font-size:11px;font-weight:750;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 9px;color:#fff}.research-note{margin-top:25px;color:#d9efff;font-size:13px}.research-note strong{color:#fff}.research .section-head p{color:#d9efff}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(0,27,61,.45);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:26px;min-height:200px}.card small{color:#8fd1ff;font-weight:900}.card h3{font-size:23px;line-height:1.1;margin:16px 0 9px}.card p{color:#d9efff;margin:0}
+.publications{background:#fff}.pub-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px}.filter{border:1px solid var(--line);background:#fff;color:var(--deep);border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}.filter.active,.filter:hover{background:var(--deep);color:#fff}.pub-status{font-size:12px;color:var(--muted);margin:0 0 15px}.pub{display:grid;grid-template-columns:85px 1fr auto;gap:22px;padding:22px 0;border-top:1px solid var(--line)}.pub:last-child{border-bottom:1px solid var(--line)}.year{font-weight:900;color:var(--blue)}.pub h3{margin:0 0 5px;font-size:18px}.pub p{margin:0;color:var(--muted)}.pub .ptags{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.pub .ptag{font-size:10px;border:1px solid var(--line);border-radius:999px;padding:4px 7px;color:var(--deep);font-weight:800}.arrow{font-size:23px;color:var(--blue)}
+.cuaderno{background:var(--navy);color:#fff}.journal{display:grid;grid-template-columns:1fr 1.2fr;gap:55px;align-items:center}.journal-art{min-height:300px;border-radius:28px;background:linear-gradient(135deg,#006fcd,#001b3d);display:grid;place-items:center;position:relative;overflow:hidden}.journal-art:before{content:"Ideas de hoy\A para la educación\A de mañana.  :)";white-space:pre;font:600 27px/1.45 cursive;transform:rotate(-6deg);background:#fff;color:#122b45;padding:35px 45px;border-radius:8px;box-shadow:0 18px 45px rgba(0,0,0,.22)}.journal h2{font-size:43px;line-height:1.05;margin:9px 0 15px}.journal p{color:#d6eaff;max-width:620px}.journal .btn{background:#fff;color:var(--deep);border-color:#fff;display:inline-block;margin-top:8px}
+.quote{text-align:center;padding:48px 20px;background:#f5fbff;color:#28415a;font:italic 18px Georgia,serif}.symbols{font:700 38px system-ui;color:var(--deep);letter-spacing:8px;margin-top:20px}footer{background:#fff;padding:30px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between}
+@media(max-width:950px){.links{display:none}.source-panel{grid-template-columns:1fr}.research-lines{grid-template-columns:1fr}.intro-grid{grid-template-columns:1fr;text-align:center}.portrait{margin:auto}.avatar{max-height:350px}.actions{justify-content:center}.section-head{grid-template-columns:1fr}.area-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}.journal{grid-template-columns:1fr}.hero:before{font-size:55px}.pub{grid-template-columns:65px 1fr}.arrow{display:none}}@media(max-width:520px){.wrap{width:min(100% - 28px,1200px)}.area-grid{grid-template-columns:1fr 1fr}.hero-logo{width:100%}.hero{min-height:75vh}.portrait{width:210px}.journal-art:before{font-size:21px;padding:28px}}
+</style>
+<style>
+#proyectos .section-lead{max-width:780px;color:var(--muted,#65758b);line-height:1.7}
+.project-timeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
+.project-card{position:relative;background:#fff;border:1px solid #dbe7f5;border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,67,156,.07);overflow:hidden}
+.project-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#006FCD}
+.project-card.current{grid-column:1/-1;background:linear-gradient(135deg,#f4f9ff,#fff);border-color:#9bc9ef}
+.project-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.project-status,.project-badge{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.project-status{color:#00439C}.project-badge{background:#e9f4ff;color:#006FCD;padding:6px 9px;border-radius:999px}
+.project-card h3{font-size:27px;margin:0 0 6px;color:#00439C}.project-card h4{font-size:16px;line-height:1.45;margin:0 0 13px;color:#18263a}
+.project-card p{line-height:1.65;color:#53657b}
+.project-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 18px;margin:18px 0}
+.project-meta span{font-size:12px;color:#52647a;border-top:1px solid #edf2f8;padding-top:8px}.project-meta b{display:block;color:#17283f;margin-bottom:3px}
+.project-lines{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.project-lines span{font-size:11px;background:#f0f6fc;border:1px solid #dceaf7;padding:6px 9px;border-radius:999px}
+.project-link{display:inline-block;margin-top:16px;color:#006FCD;font-weight:700;text-decoration:none}
+.project-card small{display:block;margin-top:14px;color:#7b8796;line-height:1.5}
+.project-separator{margin-top:42px;padding:30px;border:1px dashed #b7cee5;border-radius:20px;background:#f8fbff}.project-separator span{font-size:11px;letter-spacing:.12em;font-weight:800;color:#006FCD}.project-separator h3{margin:8px 0}
+@media(max-width:760px){.project-timeline{grid-template-columns:1fr}.project-card.current{grid-column:auto}.project-meta{grid-template-columns:1fr}}
+</style>
+
+
+<style>
+.games-showcase{margin-top:34px}.games-head{max-width:780px;margin-bottom:20px}.games-head h3{font-size:30px;margin:7px 0}.games-head p{color:#5d6d80;line-height:1.65}
+.games-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.game-card{background:#fff;border:1px solid #dbe7f5;border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(0,67,156,.08)}
+.game-image{aspect-ratio:16/9;overflow:hidden;background:#eaf4ff}.game-image img{width:100%;height:100%;object-fit:cover;display:block}
+.forge-visual{aspect-ratio:16/9;background:linear-gradient(135deg,#003b78,#006fcd 62%,#14295d);padding:28px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.forge-visual:after{content:"";position:absolute;width:210px;height:210px;border:1px solid rgba(255,255,255,.2);border-radius:50%;right:-55px;bottom:-70px}
+.game-symbols{font-size:23px;letter-spacing:.35em;opacity:.8}.forge-visual span{font-size:11px;font-weight:800;letter-spacing:.12em}.forge-visual h4{font-size:38px;margin:5px 0}.forge-visual p{margin:0;color:#d8ebff}
+.game-body{padding:22px}.game-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}.game-tags span{font-size:11px;font-weight:700;background:#eef6ff;color:#0057a7;padding:6px 9px;border-radius:999px}.game-tags .soon{background:#f7edff;color:#7b299f}
+.game-body h4{font-size:24px;margin:0 0 9px;color:#123052}.game-body>p{color:#5a6b80;line-height:1.65}.game-body dl{margin:17px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}.game-body dl div{border-top:1px solid #edf2f8;padding-top:8px}.game-body dt{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#748397;font-weight:800}.game-body dd{margin:4px 0 0;font-size:12px;color:#253b55}
+.game-body a,.coming-link{display:inline-block;margin-top:5px;font-weight:800;color:#006fcd;text-decoration:none;font-size:13px}.coming-link{color:#7b299f}
+@media(max-width:760px){.games-grid{grid-template-columns:1fr}.game-body dl{grid-template-columns:1fr}}
+</style>
+
+
+<style>
+.practice-section{padding-top:70px}.practice-intro{max-width:850px;margin-bottom:34px}.practice-intro h2{font-size:clamp(34px,5vw,58px);line-height:1.03;margin:8px 0 16px;color:#0b2d52}.practice-intro p,.practice-copy p,.training-panel p,.outreach-head p{color:#5b6c80;line-height:1.75}
+.practice-feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center;margin:30px 0 42px}.practice-number{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.15em;color:#006fcd;margin-bottom:8px}.practice-copy h3,.training-panel h3,.outreach-head h3{font-size:30px;margin:3px 0 12px;color:#123052}
+.practice-photo{margin:0;border-radius:24px;overflow:hidden;background:#eaf4ff;box-shadow:0 18px 45px rgba(0,67,156,.12)}.practice-photo img{width:100%;height:360px;object-fit:cover;display:block}.practice-photo figcaption{padding:10px 14px;font-size:11px;color:#66778b;background:#fff}
+.practice-pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.practice-pills span{font-size:11px;font-weight:700;padding:7px 10px;border-radius:999px;background:#edf6ff;color:#0057a7}
+.training-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;padding:32px;border-radius:24px;background:linear-gradient(135deg,#063e79,#006fcd);color:#fff;margin:42px 0}.training-panel h3,.training-panel p,.training-panel .practice-number{color:#fff}.training-panel p{opacity:.88}.training-topics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.training-topics div{display:flex;gap:10px;align-items:center;padding:13px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.08)}.training-topics b{font-size:20px}.training-topics span{font-size:12px;font-weight:700}
+.outreach-head{max-width:790px;margin:50px 0 22px}.experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.experience-card{border:1px solid #dce7f3;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 10px 28px rgba(0,67,156,.07)}.experience-card img{width:100%;height:190px;object-fit:cover;display:block;background:#eaf4ff}.experience-card div{padding:18px}.experience-card span{font-size:10px;font-weight:900;letter-spacing:.11em;color:#006fcd}.experience-card h4{font-size:19px;margin:7px 0;color:#173754}.experience-card p{font-size:13px;line-height:1.6;color:#617186;margin:0}
+.collab-strip{margin-top:32px;padding:28px 30px;border-radius:22px;background:#f2f8ff;border:1px solid #cfe3f6;display:flex;align-items:center;justify-content:space-between;gap:30px}.collab-strip h3{margin:5px 0 7px;color:#123052}.collab-strip p{margin:0;color:#617186;max-width:720px;line-height:1.6}.collab-strip a{white-space:nowrap;background:#006fcd;color:#fff;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:800;font-size:12px}
+@media(max-width:800px){.practice-feature,.training-panel{grid-template-columns:1fr}.experience-grid{grid-template-columns:1fr}.training-topics{grid-template-columns:1fr}.practice-photo img{height:260px}.collab-strip{align-items:flex-start;flex-direction:column}}
+</style>
+
+
+<style>
+.contact-section{padding-top:28px;padding-bottom:70px}
+.contact-card{display:flex;justify-content:space-between;align-items:center;gap:34px;padding:36px;border-radius:26px;background:linear-gradient(135deg,#eef7ff,#fff);border:1px solid #cfe3f6;box-shadow:0 16px 40px rgba(0,67,156,.08)}
+.contact-card h2{font-size:clamp(32px,4vw,48px);margin:6px 0 10px;color:#123052}
+.contact-card p{max-width:760px;color:#617186;line-height:1.7}
+.contact-mails{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.contact-mails a{padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #d8e7f5;color:#004f9e;text-decoration:none;font-weight:800;font-size:13px}
+.contact-mails small{font-weight:700;color:#75879a;margin-left:5px}
+.contact-action{white-space:nowrap;background:#006fcd;color:#fff;padding:14px 18px;border-radius:13px;text-decoration:none;font-weight:900;font-size:13px}
+@media(max-width:800px){.contact-card{align-items:flex-start;flex-direction:column}}
+</style>
+
+
+<style>
+.profile-facets{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.profile-facets span{padding:9px 12px;border:1px solid #d7e7f5;background:#f6fbff;border-radius:999px;color:#17466f;font-size:12px;font-weight:800}
+.maker-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.maker-links a{font-size:11px;font-weight:800;text-decoration:none;color:#005bab;background:#eef7ff;border:1px solid #d2e7f8;border-radius:10px;padding:8px 10px}
+.cuaderno{padding-top:70px;padding-bottom:60px}.cuaderno-head{max-width:790px;margin-bottom:26px}.cuaderno-head h2{font-size:clamp(34px,5vw,58px);line-height:1.04;margin:7px 0 14px;color:#0b2d52}.cuaderno-head p{color:#607187;line-height:1.75}
+.cuaderno-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.note-card{display:flex;flex-direction:column;min-height:290px;padding:24px;border:1px solid #dce8f3;border-radius:21px;background:#fff;box-shadow:0 10px 28px rgba(0,67,156,.06)}.note-featured{background:linear-gradient(145deg,#073f7d,#006fcd);color:#fff;border:none}.note-meta{display:flex;justify-content:space-between;gap:12px;font-size:9px;font-weight:900;letter-spacing:.1em;color:#006fcd}.note-featured .note-meta{color:#dceeff}.note-card h3{font-size:22px;line-height:1.18;margin:18px 0 10px;color:#163754}.note-featured h3{color:#fff}.note-card p{font-size:13px;line-height:1.65;color:#64758a;flex:1}.note-featured p{color:#e4f1ff}.note-card a{margin-top:16px;color:#006fcd;text-decoration:none;font-size:11px;font-weight:900}.note-featured a{color:#fff}.note-open{background:#f5faff}
+@media(max-width:900px){.cuaderno-grid{grid-template-columns:1fr}.note-card{min-height:auto}}
+</style>
+
+</head><body>
+<nav><div class="wrap navin"><a class="brand" href="#inicio">MARIO CEREZO-PIZARRO<small>Educación · Tecnología · Cultura</small></a><div class="links"><a href="#inicio">Inicio</a><a href="#sobre-mi">Sobre mí</a><a href="#investigacion">Investigación</a><a href="#publicaciones">Producción científica</a><a href="#proyectos">Proyectos</a><a href="#docencia">Docencia y transferencia</a><a href="#cuaderno">Cuaderno</a><a href="#contacto">Contacto</a></div></div></nav>
+<main id="inicio"><header class="hero"><div class="wrap hero-inner"><img class="hero-logo" src="assets/images/portada-molestes.png" alt="No me molestes, ¡estoy aprendiendo!"><div><span class="strap">Investigar. Crear. Compartir. Seguir aprendiendo.</span></div><a class="scroll" href="#sobre-mi">Descubre más <b>↓</b></a></div></header>
+<section class="intro" id="sobre-mi"><div class="wrap intro-grid"><img class="portrait" src="assets/images/mario-retrato-actual.png" alt="Mario Cerezo-Pizarro"><div><div class="eyebrow">Hola, soy</div><h1>Mario Cerezo-Pizarro</h1><p class="lead"><strong>Docente e investigador en la Universidad Internacional de La Rioja (UNIR)</strong> y miembro del grupo de investigación <strong>Tecnología Educativa y Experiencias Lúdicas (TEEL)</strong>. Doctor en Innovación y Tecnología Educativa por la Universidad de Extremadura y Premio Extraordinario de Doctorado 2025. Mi trabajo se sitúa en la intersección entre educación, tecnología y cultura digital, con especial interés en los videojuegos y sus implicaciones educativas y culturales, la tecnología educativa y las experiencias lúdicas mediadas por tecnologías digitales.</p><p class="lead">Soy graduado en Educación Infantil, con mención en Atención Temprana, y Máster en Psicopedagogía. Esta formación sigue marcando mi manera de entender la tecnología: no como un fin en sí misma, sino como una herramienta para diseñar experiencias educativas más inclusivas, creativas y significativas. A lo largo de mi trayectoria he trabajado con videojuegos educativos, impresión y diseño 3D, realidad virtual y aumentada, gamificación y otras tecnologías emergentes, combinando investigación, docencia, innovación y divulgación científica. <strong>Investigar. Crear. Compartir. Seguir aprendiendo.</strong></p><div class="actions"><a class="btn primary" href="#investigacion">Mi investigación</a><a class="btn" href="#publicaciones">Producción científica</a><a class="btn" href="#cuaderno">Cuaderno</a><a class="btn" href="https://www.unir.net/" target="_blank" rel="noopener">UNIR ↗</a><a class="btn" href="https://investigacion.unir.net/grupos/35514/detalle?lang=en_US" target="_blank" rel="noopener">Grupo TEEL ↗</a></div><div class="profile-label">Perfiles académicos</div><div class="profiles">
+<a class="profile" href="https://orcid.org/0000-0001-8097-0573" target="_blank" rel="noopener">ORCID ↗</a>
+<a class="profile" href="https://scholar.google.com/citations?user=habJTNYAAAAJ&hl=es" target="_blank" rel="noopener">Google Scholar ↗</a>
+<a class="profile" href="https://www.scopus.com/authid/detail.uri?authorId=57796070900" target="_blank" rel="noopener">Scopus ↗</a>
+<a class="profile" href="https://www.researchgate.net/profile/Mario-Cerezo-Pizarro-2" target="_blank" rel="noopener">ResearchGate ↗</a>
+<a class="profile" href="https://dialnet.unirioja.es/servlet/autor?codigo=5824000" target="_blank" rel="noopener">Dialnet ↗</a>
+<a class="profile" href="https://investigacion.unir.net/investigadores/2410719/detalle" target="_blank" rel="noopener">Perfil UNIR ↗</a></div></div><img class="avatar" src="assets/images/mario-personaje.png" alt="Personaje ilustrado de Mario"></div>
+<div class="profile-facets" aria-label="Ámbitos del perfil">
+  <span>🎓 Profesor universitario</span>
+  <span>🎮 Videojuegos y cultura digital</span>
+  <span>🖨️ Maker · diseño 3D</span>
+  <span>🚁 Piloto UAS A1/A3 · A2 · operador registrado</span>
+</div>
+</section>
+<section class="work"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Áreas de trabajo</div><h2>Investigar hoy para la educación de mañana</h2></div><p>Exploro el potencial educativo de las tecnologías digitales desde una perspectiva crítica, creativa y social. Estas áreas funcionan como un mapa rápido de intereses y conectan con mis cuatro líneas principales de investigación.</p></div><div class="area-grid"><div class="area"><span class="icon">🎮</span>Videojuegos<br>y cultura digital</div><div class="area"><span class="icon">🥽</span>Realidad virtual<br>y aumentada</div><div class="area"><span class="icon">🧊</span>Impresión 3D<br>y fabricación digital</div><div class="area"><span class="icon">🧠</span>Tecnología educativa<br>e innovación docente</div><div class="area"><span class="icon">📍</span>Aprendizaje situado<br>e informal</div><div class="area"><span class="icon">👥</span>Inclusión y<br>aprendizaje activo</div></div></div></section>
+<section class="research" id="investigacion"><div class="wrap"><div class="section-head"><div><div class="eyebrow" style="color:#8fd1ff">Investigación</div><h2>Cuatro líneas, una misma curiosidad</h2></div><p>Mi investigación conecta educación, tecnología y cultura digital. Las líneas no son compartimentos cerrados: dialogan entre sí y sirven para organizar publicaciones, proyectos y experiencias.</p></div><div class="research-lines">
+<article class="research-line"><span class="num">01</span><div class="r-icon">🎮</div><h3>Videojuegos, cultura y educación</h3><p>Estudio el videojuego como artefacto cultural, medio expresivo y espacio de aprendizaje. Me interesan especialmente sus mecánicas, posibilidades de interacción, usos educativos y capacidad para construir significados sobre la cultura y la sociedad contemporánea.</p><div class="tags"><span class="tag">Cultura digital</span><span class="tag">Videojuegos culturales</span><span class="tag">Serious games</span><span class="tag">Gamificación</span></div></article>
+<article class="research-line"><span class="num">02</span><div class="r-icon">💻</div><h3>Tecnología educativa y cultura digital</h3><p>Analizo cómo las tecnologías digitales median los procesos de enseñanza y aprendizaje, la innovación docente y la formación del profesorado, atendiendo tanto a sus posibilidades pedagógicas como a los cambios culturales que generan.</p><div class="tags"><span class="tag">Tecnología educativa</span><span class="tag">IA</span><span class="tag">Innovación docente</span><span class="tag">Formación docente</span></div></article>
+<article class="research-line"><span class="num">03</span><div class="r-icon">🥽</div><h3>Tecnologías emergentes y experiencias inmersivas</h3><p>Diseño y exploro experiencias educativas con realidad virtual y aumentada, impresión y diseño 3D, fabricación digital y otras tecnologías emergentes, con especial atención a la experimentación, la creatividad y el aprendizaje activo.</p><div class="tags"><span class="tag">Realidad virtual</span><span class="tag">Impresión 3D</span><span class="tag">Fabricación digital</span><span class="tag">Maker</span></div></article>
+<article class="research-line"><span class="num">04</span><div class="r-icon">📍</div><h3>Aprendizaje activo, situado e informal</h3><p>Me interesan las experiencias que desbordan los límites del aula y conectan tecnología, territorio, juego y participación. Aquí se sitúan propuestas de aprendizaje geolocalizado, Geocaching, divulgación y otras formas de aprendizaje mediado por tecnología.</p><div class="tags"><span class="tag">Geocaching</span><span class="tag">Aprendizaje situado</span><span class="tag">Educación informal</span><span class="tag">Divulgación</span></div></article>
+</div><p class="research-note"><strong>Próximamente:</strong> cada línea enlazará con sus publicaciones, proyectos y experiencias relacionadas.</p></div></section>
+
+<section id="proyectos" class="section">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Investigación financiada</span>
+      <h2>Proyectos oficiales</h2>
+      <p class="section-lead">Participación en proyectos competitivos y financiados vinculados con la tecnología educativa, la cultura digital, los videojuegos y los escenarios emergentes de aprendizaje.</p>
+    </div>
+  </div>
+
+  <div class="project-timeline">
+    <article class="project-card current">
+      <div class="project-top">
+        <span class="project-status">EN CURSO · 2025–2028</span>
+        <span class="project-badge">Proyecto competitivo</span>
+      </div>
+      <h3>TALLMEE</h3>
+      <h4>Llegada de los modelos de lenguaje a gran escala. Diversidad lingüística para la mejora de la educación</h4>
+      <p>Proyecto centrado en el impacto pedagógico y sociolingüístico de tecnologías emergentes, con especial atención a los modelos de lenguaje a gran escala y la diversidad lingüística en educación.</p>
+      <div class="project-meta"><span><b>IP</b> Lucía Amorós Poveda</span><span><b>Entidad</b> Universidad Internacional de La Rioja</span><span><b>Financia</b> Fundación Ramón Areces</span><span><b>Referencia</b> CIHP25S21838</span><span><b>Participación</b> Miembro del equipo*</span></div>
+      <div class="project-lines"><span>💻 Tecnología educativa</span><span>🥽 Tecnologías emergentes</span></div>
+      <a class="project-link" href="https://investigacion.unir.net/proyectos/1471284/detalle?lang=en_US" target="_blank" rel="noopener">Ficha oficial UNIR ↗</a>
+      <small>*Incorporación reciente; pendiente de actualización en la ficha pública institucional.</small>
+    </article>
+
+    <article class="project-card">
+      <div class="project-top"><span class="project-status">2019–2022</span><span class="project-badge">Proyecto de investigación</span></div>
+      <h3>PIED</h3>
+      <h4>Plan Integral de Educación Digital para la mejora de los resultados de aprendizaje en Educación Primaria y Secundaria</h4>
+      <p>Proyecto orientado al análisis y desarrollo de un Plan Integral de Educación Digital para la mejora de los procesos y resultados de aprendizaje mediante la integración educativa de las tecnologías digitales.</p>
+      <div class="project-meta"><span><b>IP</b> Jesús Valverde Berrocoso</span><span><b>Entidad</b> Universidad de Extremadura</span><span><b>Financia</b> Servicio de Investigación y Desarrollo Tecnológico</span><span><b>Financiación</b> 37.950 €</span><span><b>Participación</b> Miembro del equipo</span><span><b>Equipo</b> 19 investigadores/as</span></div>
+      <div class="project-lines"><span>💻 Tecnología educativa</span></div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-top"><span class="project-status">2020–2021</span><span class="project-badge">Proyecto financiado</span></div>
+      <h3>Forge of Destiny</h3>
+      <h4>Videojuego interactivo para la detección de noticias falsas en la era de la posverdad</h4>
+      <p>Proyecto centrado en el diseño y desarrollo de un videojuego interactivo orientado a la identificación de noticias falsas y al tratamiento educativo de la desinformación.</p>
+      <div class="project-meta"><span><b>IP</b> Albert González Fernández</span><span><b>Entidad</b> Universidad de Extremadura</span><span><b>Financia</b> Fundación COTEC para la Innovación</span><span><b>Financiación</b> 30.000 €</span><span><b>Participación</b> Miembro del equipo</span></div>
+      <div class="project-lines"><span>🎮 Videojuegos, cultura y educación</span></div>
+      <small>La documentación aportada indica «2 años», aunque las fechas consignadas son 27/03/2020–26/03/2021.</small>
+    </article>
+
+    <article class="project-card">
+      <div class="project-top"><span class="project-status">2019–2022</span><span class="project-badge">Proyecto financiado</span></div>
+      <h3>Nómadas del conocimiento</h3>
+      <h4>Contextos pedagógicos emergentes: cartografiando prácticas disruptivas en Educación Secundaria</h4>
+      <p>Proyecto centrado en la identificación y análisis de prácticas pedagógicas emergentes y disruptivas en Educación Secundaria y en nuevas formas de construcción y circulación del conocimiento.</p>
+      <div class="project-meta"><span><b>IP</b> Jesús Valverde Berrocoso</span><span><b>Entidad</b> Universidad de Extremadura</span><span><b>Financia</b> Fundación COTEC para la Innovación</span><span><b>Financiación</b> 20.000 €</span><span><b>Equipo</b> 19 investigadores/as</span></div>
+      <div class="project-lines"><span>💻 Tecnología educativa</span><span>📍 Aprendizaje activo y situado</span></div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-top"><span class="project-status">FINALIZADO · 2023</span><span class="project-badge">Proyecto internacional</span></div>
+      <h3>BABO</h3>
+      <h4>Bilingual and Bicultural Outlook</h4>
+      <p>Proyecto internacional desarrollado en el marco de la Universidad de Extremadura. La ficha se completará con el periodo de inicio, programa, referencia y participación concreta cuando se disponga de esos datos.</p>
+      <div class="project-meta"><span><b>IP</b> María Rosa Fernández Sánchez</span><span><b>Entidad</b> Universidad de Extremadura</span><span><b>Financia</b> SEPIE</span><span><b>Financiación</b> 351.122 €</span><span><b>Finalización</b> 18/12/2023</span></div>
+    </article>
+  </div>
+
+  <div class="project-separator">
+<span>OTRAS INICIATIVAS</span><h3>Innovación, transferencia y experiencias</h3>
+<p>Resultados y desarrollos que nacen de la investigación, la colaboración y la experimentación educativa, diferenciados de los proyectos oficiales financiados.</p>
+</div>
+<div class="games-showcase">
+  <div class="games-head">
+    <span class="eyebrow">Del proyecto al producto</span>
+    <h3>Videojuegos desarrollados</h3>
+    <p>Diseño y desarrollo de videojuegos con propósito educativo y social, conectando investigación, tecnología y experiencias lúdicas.</p>
+  </div>
+  <div class="games-grid">
+    <article class="game-card forge">
+      <div class="game-visual forge-visual"><div class="game-symbols">△ ○ × □</div><div><span>VIDEOJUEGO EDUCATIVO · 2023</span><h4>Forge of Destiny</h4><p>Desinformación · pensamiento crítico · posverdad</p></div></div>
+      <div class="game-body">
+        <div class="game-tags"><span>🎮 RPG educativo</span><span>Publicado</span></div>
+        <h4>Forge of Destiny</h4>
+        <p>Videojuego interactivo desarrollado como resultado del proyecto financiado por Fundación COTEC, orientado al tratamiento de la desinformación y la identificación de noticias falsas mediante una experiencia lúdica.</p>
+        <dl><div><dt>Participación</dt><dd>Desarrollo y diseño técnico</dd></div><div><dt>Proyecto asociado</dt><dd>Forge of Destiny · Fundación COTEC</dd></div></dl>
+        <a href="https://store.steampowered.com/app/2200670/Forge_of_Destiny/" target="_blank" rel="noopener">Ver en Steam ↗</a>
+      </div>
+    </article>
+    <article class="game-card lanzate">
+      <div class="game-image"><img src="assets/images/lanzate-web.jpg" alt="Lánzate, videojuego de emprendimiento con impacto"></div>
+      <div class="game-body">
+        <div class="game-tags"><span>🎮 Videojuego educativo</span><span class="soon">Próximamente · 2026</span></div>
+        <h4>Lánzate</h4>
+        <p>Videojuego de emprendimiento con impacto desarrollado de la mano de la Fundación Santa María la Real, concebido como una experiencia lúdica vinculada al emprendimiento y al impacto social.</p>
+        <dl><div><dt>Participación</dt><dd>Creación y desarrollo del videojuego</dd></div><div><dt>Entidad</dt><dd>Fundación Santa María la Real</dd></div></dl>
+        <span class="coming-link">Publicación próximamente</span>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="docencia" class="section practice-section">
+  <div class="practice-intro">
+    <span class="eyebrow">Docencia · formación · transferencia</span>
+    <h2>Aprender haciendo, compartir lo aprendido</h2>
+    <p>Mi actividad docente y de transferencia se sitúa en el encuentro entre la Tecnología Educativa, las experiencias lúdicas y la experimentación. Me interesa trasladar la investigación a contextos reales: aulas universitarias, centros educativos, formación del profesorado y actividades abiertas a la ciudadanía.</p>
+  </div>
+
+  <div class="practice-feature">
+    <div class="practice-copy">
+      <span class="practice-number">01</span>
+      <h3>Docencia e innovación educativa</h3>
+      <p><strong>Formar a quienes van a educar.</strong> Como profesor universitario, una parte fundamental de mi actividad está dedicada a la formación de futuros maestros, maestras y profesionales de la educación. Entiendo esta responsabilidad como algo que va más allá de transmitir contenidos: supone acompañar el desarrollo de una mirada pedagógica crítica, creativa y conectada con las necesidades reales de las aulas.</p>
+      <p>Mi docencia conecta los fundamentos educativos con la innovación, la cultura digital y las posibilidades de la tecnología para diseñar experiencias de aprendizaje significativas. Esta perspectiva se nutre también de mi formación como maestro y de mi investigación en Tecnología Educativa, manteniendo un diálogo constante entre <strong>universidad, investigación y práctica educativa</strong>.</p>
+      <div class="practice-pills"><span>Formación del profesorado</span><span>Tecnología educativa</span><span>Innovación docente</span><span>Universidad y escuela</span></div>
+    </div>
+    <figure class="practice-photo">
+      <img src="assets/images/docencia-tecnologia.svg" alt="Experiencia educativa con realidad virtual">
+      <figcaption>Experimentación con tecnologías educativas en contextos formativos.</figcaption>
+    </figure>
+  </div>
+
+  <div class="training-panel">
+    <div>
+      <span class="practice-number">02</span>
+      <h3>Formación y colaboración</h3>
+      <p><strong>Compartir lo aprendido forma parte de mi manera de entender la universidad.</strong> Colaboro en propuestas de formación para docentes, futuros docentes y profesionales de la educación, así como en talleres desarrollados junto a universidades, centros educativos, Centros de Profesores y Recursos y otras entidades.</p>
+      <p>Las actividades pueden adaptarse a cada contexto, combinando fundamentación pedagógica, demostración y experimentación práctica.</p>
+    </div>
+    <div class="training-topics">
+      <div><b>🎮</b><span>Videojuegos y aprendizaje</span></div>
+      <div><b>🤖</b><span>IA generativa y educación</span></div>
+      <div><b>🖨️</b><span>Diseño e impresión 3D</span></div>
+      <div><b>🥽</b><span>Realidad virtual e inmersión</span></div>
+      <div><b>🎲</b><span>Gamificación y aprendizaje basado en juego</span></div>
+      <div><b>💻</b><span>Tecnología educativa y metodologías activas</span></div>
+      <div><b>📍</b><span>Geocaching y aprendizaje situado</span></div>
+      <div><b>🔬</b><span>Investigación e innovación educativa</span></div>
+    </div>
+  </div>
+
+  <div class="outreach-head">
+    <span class="practice-number">03</span>
+    <h3>Divulgación y experiencias</h3>
+    <p><strong>Sacar la tecnología del laboratorio.</strong> Una parte importante de mi trabajo consiste en transformar la investigación y la tecnología educativa en experiencias que puedan tocarse, jugarse y experimentarse con alumnado, docentes y ciudadanía.</p>
+  </div>
+
+  <div class="experience-grid">
+    <article class="experience-card">
+      <img src="assets/images/impresion-3d.svg" alt="Actividad educativa de impresión 3D">
+      <div><span>🖨️ CREAR · MAKER</span><h4>Diseño, creación e impresión 3D</h4>
+<p>Exploro la fabricación digital como herramienta para materializar ideas, crear recursos educativos y desarrollar experiencias STEAM. Parte de este trabajo se concreta en el diseño y publicación de modelos propios dentro de comunidades maker.</p>
+<div class="maker-links">
+<a href="https://makerworld.com/es/@mariocp/upload" target="_blank" rel="noopener">MakerWorld · Mario CP ↗</a>
+<a href="https://www.thingiverse.com/Direbollosa/designs" target="_blank" rel="noopener">Thingiverse · Direbollosa ↗</a>
+</div></div>
+    </article>
+    <article class="experience-card">
+      <img src="assets/images/realidad-virtual.svg" alt="Actividad educativa con realidad virtual">
+      <div><span>🥽 EXPLORAR</span><h4>Realidad virtual e inmersión</h4><p>Experiencias inmersivas para explorar nuevos contextos de aprendizaje y analizar críticamente las posibilidades educativas de la realidad virtual.</p></div>
+    </article>
+    <article class="experience-card">
+      <img src="assets/images/experimentacion.svg" alt="Experimentación con tecnologías educativas">
+      <div><span>🧪 EXPERIMENTAR</span><h4>Tecnologías para aprender haciendo</h4><p>Videojuegos, robótica, prototipado, recursos digitales y otras tecnologías emergentes como punto de partida para aprender mediante la experimentación.</p></div>
+    </article>
+  </div>
+
+  <div class="collab-strip">
+    <div><span class="eyebrow">Colaboraciones</span><h3>¿Hablamos de una formación o actividad?</h3><p>Propuestas para CPR, centros educativos, universidades, jornadas, proyectos y actividades de divulgación, adaptadas a los objetivos y al público de cada contexto.</p></div>
+    <a href="mailto:mario.cerezo@unir.net?cc=mariocp@unex.es&subject=Propuesta%20de%20colaboraci%C3%B3n">Proponer una colaboración →</a>
+  </div>
+</section>
+
+
+<section class="publications" id="publicaciones"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Producción científica</div><h2>Producción científica</h2></div><p>La producción científica reúne publicaciones, datos, preprints y otros resultados de investigación, vinculados a mis cuatro líneas de investigación. Las referencias verificadas incluyen acceso directo mediante DOI o URL cuando está disponible; OpenAlex y ORCID permiten detectar nuevas publicaciones sin editar el HTML.</p></div><div class="source-panel"><div><h3>Identidad investigadora multifuente</h3><p>La web utiliza el ORCID como identificador persistente y consulta OpenAlex para detectar nuevas publicaciones. UNIR actúa como referencia institucional; Google Scholar, Scopus, ResearchGate y Dialnet se ofrecen como perfiles complementarios. Las métricas de cada plataforma deben interpretarse según su propia cobertura.</p></div><div class="source-links">
+<a href="https://orcid.org/0000-0001-8097-0573" target="_blank" rel="noopener">ORCID</a><a href="https://scholar.google.com/citations?user=habJTNYAAAAJ&hl=es" target="_blank" rel="noopener">Google Scholar</a><a href="https://www.scopus.com/authid/detail.uri?authorId=57796070900" target="_blank" rel="noopener">Scopus</a><a href="https://www.researchgate.net/profile/Mario-Cerezo-Pizarro-2" target="_blank" rel="noopener">ResearchGate</a><a href="https://dialnet.unirioja.es/servlet/autor?codigo=5824000" target="_blank" rel="noopener">Dialnet</a><a href="https://investigacion.unir.net/investigadores/2410719/publicaciones" target="_blank" rel="noopener">UNIR</a></div></div><div class="pub-tools"><button class="filter active" data-filter="all">Todas</button><button class="filter" data-filter="l1">🎮 Videojuegos y cultura</button><button class="filter" data-filter="l2">💻 Tecnología educativa</button><button class="filter" data-filter="l3">🥽 Tecnologías emergentes</button><button class="filter" data-filter="l4">📍 Aprendizaje situado</button></div><p class="pub-status" id="pub-status">Catálogo maestro: cargando y contrastando registros…</p><div id="pub-list"></div><noscript><p>Activa JavaScript para cargar automáticamente las publicaciones. Perfil institucional: <a href="https://investigacion.unir.net/investigadores/2410719/publicaciones">UNIR ↗</a></p></noscript></div></section>
+
+<section id="contacto" class="section contact-section">
+  <div class="contact-card">
+    <div>
+      <span class="eyebrow">Contacto</span>
+      <h2>¿Hablamos?</h2>
+      <p>Para propuestas de formación, investigación, divulgación u otras colaboraciones, puedes escribirme a ambas direcciones. El botón prepara un único mensaje dirigido a mi correo de UNIR con copia a mi cuenta de la Universidad de Extremadura.</p>
+      <div class="contact-mails"><a href="https://es.linkedin.com/in/mario-cerezo-pizarro-4a4b18138" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:mario.cerezo@unir.net">mario.cerezo@unir.net <small>UNIR</small></a>
+        <a href="mailto:mariocp@unex.es">mariocp@unex.es <small>UEx</small></a>
+      </div>
+    </div>
+    <a class="contact-action" href="mailto:mario.cerezo@unir.net?cc=mariocp@unex.es&subject=Propuesta%20de%20colaboraci%C3%B3n">Proponer una colaboración →</a>
+  </div>
+</section>
+
+
+<section class="cuaderno section" id="cuaderno">
+  <div class="cuaderno-head">
+    <span class="eyebrow">Cuaderno</span>
+    <h2>Pensar en voz alta</h2>
+    <p>Ideas, experiencias y reflexiones sobre educación, videojuegos, tecnología y cultura digital. Un espacio menos académico para compartir aquello en lo que trabajo, investigo y sigo aprendiendo.</p>
+  </div>
+  <div class="cuaderno-grid">
+    <article class="note-card">
+      <div class="note-meta"><span>DIVULGACIÓN · MEDIOS</span><span>LinkedIn</span></div>
+      <h3>Una aparición en RNE</h3>
+      <p>Participación en Radio Nacional de España compartida desde mi perfil de LinkedIn. Una muestra de cómo la divulgación y la transferencia permiten llevar el trabajo académico más allá de la universidad.</p>
+      <a href="https://www.linkedin.com/posts/mario-cerezo-pizarro-4a4b18138_noticias-de-extremadura-del-290826-rtvees-activity-7507745150429786112-sGei" target="_blank" rel="noopener">Ver publicación original en LinkedIn ↗</a>
+    </article>
+
+    <article class="note-card note-featured">
+      <div class="note-meta"><span>UNIVERSIDAD Y EDUCACIÓN</span><span>LinkedIn</span></div>
+      <h3>Formar maestros y pensar su acceso a la profesión</h3>
+      <p>Una reflexión sobre vocación, formación inicial del profesorado y las dificultades que encuentran quienes aspiran a incorporarse a la profesión docente. ¿Qué podemos repensar desde la universidad y desde el propio sistema educativo?</p>
+      <a href="https://es.linkedin.com/posts/mario-cerezo-pizarro-4a4b18138_estos-d%C3%ADas-desfilan-por-los-centros-educativos-activity-7482418183371460608-f4RG" target="_blank" rel="noopener">Leer publicación original en LinkedIn ↗</a>
+    </article>
+    <article class="note-card">
+      <div class="note-meta"><span>VIDEOJUEGOS Y CULTURA</span><span>LinkedIn</span></div>
+      <h3>¿Los videojuegos son cultura?</h3>
+      <p>Una pregunta que atraviesa buena parte de mi investigación: cómo entiende el profesorado el videojuego cultural y qué relación puede establecerse entre entretenimiento, aprendizaje y significados socioculturales.</p>
+      <a href="https://es.linkedin.com/posts/mario-cerezo-pizarro-4a4b18138_what-is-a-cultural-video-game-study-of-teachers-activity-7476964143040901121-o2_8" target="_blank" rel="noopener">Leer publicación original en LinkedIn ↗</a>
+    </article>
+    <article class="note-card note-open">
+      <div class="note-meta"><span>NUEVAS ENTRADAS</span><span>Web</span></div>
+      <h3>Un cuaderno que seguirá creciendo</h3>
+      <p>Este espacio reunirá también textos escritos específicamente para la web: notas breves, ideas en desarrollo y reflexiones nacidas de la docencia, la investigación o la práctica.</p>
+      <a href="https://es.linkedin.com/in/mario-cerezo-pizarro-4a4b18138" target="_blank" rel="noopener">Seguir mis publicaciones en LinkedIn ↗</a>
+    </article>
+  </div>
+</section>
+
+<div class="quote">Investigar. Crear. Compartir. Seguir aprendiendo.<div style="font:12px system-ui;margin-top:10px">No me molestes, estoy aprendiendo.</div><div class="symbols">△ ○ × □</div></div></main>
+<footer><div class="wrap foot"><span>© 2026 Mario Cerezo-Pizarro</span><span>No me molestes, estoy aprendiendo.</span></div></footer><script>
+const ORCID='0000-0001-8097-0573';
+const fallback=[
+{year:2026,title:'Transformación digital de la enseñanza universitaria. Analíticas académicas y escenarios de futuro',authors:'Mario Cerezo-Pizarro',venue:'Educatio Siglo XXI, 44(1), 309–312',url:'https://revistas.um.es/educatio/article/view/704501',type:'Reseña',line:'l2'},
+{year:2026,title:'Suárez-Guerrero, C., Raffaghelli, J. E. y Rivera-Vargas, P. (2023). Mitos EdTech. Desmontando el solucionismo tecnológico en educación. Editorial UOC',authors:'Mario Cerezo-Pizarro',venue:'Revista Latinoamericana de Tecnología Educativa – RELATEC, 25(1)',url:'https://doi.org/10.17398/1695-288X.25.1.119',doi:'10.17398/1695-288X.25.1.119',type:'Reseña',line:'l2'},
+
+{year:2026,title:'What is a Cultural Video Game? Study of Teachers’ Perspectives on Cultural Video Games Through the CUDAEVC Questionnaire',authors:'Mario Cerezo-Pizarro; Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera',venue:'Journal of Education Culture and Society, 17(1), 879–911',url:'https://doi.org/10.15503/jecs2026.1.879.911',doi:'10.15503/jecs2026.1.879.911',type:'Artículo',line:'l1'},
+{year:2026,title:'Geocaching como recurso educativo conectando naturaleza, tecnología y aprendizaje',authors:'Mario Cerezo-Pizarro; Pilar Enrique-Sánchez',venue:'Innovación docente en Educación Física en la Naturaleza, pp. 351–366. Octaedro',url:'https://doi.org/10.36006/09818-1',doi:'10.36006/09818-1',type:'Capítulo de libro',line:'l4'},
+{year:2025,title:'Design and Validation of an Instrument to Evaluate Teaching Practices and Conceptions Regarding the use of Cultural Video Games in the Classroom',authors:'Mario Cerezo-Pizarro; Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera',venue:'Foro de Educación, 23(2), 246–272',url:'https://doi.org/10.14201/fde.23213',doi:'10.14201/fde.23213',type:'Artículo',line:'l1'},
+{year:2025,title:'Feminism, Video Games and Learning. An Analysis of the Steam Platform from an Educational Perspective',authors:'Mario Cerezo-Pizarro; Alain Presentación-Muñoz; María Rosa Fernández-Sánchez',venue:'Comunicar, 33(80), 25–38',url:'https://doi.org/10.5281/zenodo.15565354',doi:'10.5281/zenodo.15565354',type:'Artículo',line:'l1'},
+{year:2025,title:'Videojuegos en las aulas: un estudio evaluativo sobre un curso de formación en la utilización de videojuegos para el profesorado extremeño',authors:'Mario Cerezo-Pizarro; Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera',venue:'Texto Livre, 18, e56657',url:'https://doi.org/10.1590/1983-3652.2025.56657',doi:'10.1590/1983-3652.2025.56657',type:'Artículo',line:'l1'},
+{year:2025,title:'Impacto del diseño y utilización de videojuegos culturales en educación: escenarios, implicaciones y posibilidades de interacción',authors:'Mario Cerezo-Pizarro',venue:'Tesis doctoral. Universidad de Extremadura',url:'http://hdl.handle.net/10662/26110',type:'Tesis doctoral',line:'l1'},
+{year:2024,title:'Developing Doctoral Theses in Education: The Role of Systematic Reviews in the Spanish Context',authors:'Mario Cerezo-Pizarro; Alain Presentación-Muñoz; José Ignacio Calzada-Rodríguez',venue:'Education Sciences, 14(11), 1165',url:'https://doi.org/10.3390/educsci14111165',doi:'10.3390/educsci14111165',type:'Artículo',line:'l2'},
+{year:2024,title:'Educación mediática en contextos informales: un estudio de caso de la transmisión cultural portuguesa a través de Assassin´s Creed',authors:'Mario Cerezo-Pizarro; Lina Morgado; Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera',venue:'Aloma, 42(2), 47–57',url:'https://doi.org/10.51698/aloma.2024.42.2.47-57',doi:'10.51698/aloma.2024.42.2.47-57',type:'Artículo',line:'l4'},
+{year:2024,title:'Realidad virtual y videojuegos en educación social. Percepciones y análisis en la formación de educadores',authors:'Mario Cerezo-Pizarro; Jorge Guerra-Antequera; Francisco Ignacio Revuelta-Domínguez; Jairo Melo-Sánchez',venue:'Qurriculum, 37, 9–23',url:'https://doi.org/10.25145/j.qurricul.2024.37.01',doi:'10.25145/j.qurricul.2024.37.01',type:'Artículo',line:'l3'},
+{year:2024,title:'López Gómez, S., Rodríguez Rodríguez, J., Vidal Esteve, M.I. y Marín Suelves, D. (2023). Videojuegos y oportunidades educativas. Orientaciones para su diseño, análisis y uso. Editum',authors:'Mario Cerezo-Pizarro',venue:'Revista Latinoamericana de Tecnología Educativa – RELATEC, 23(1), 107–108',url:'https://doi.org/10.17398/1695-288X.23.1.107',doi:'10.17398/1695-288X.23.1.107',type:'Reseña',line:'l1'},
+{year:2023,title:'The Cultural Impact of Video Games: A Systematic Review of the Literature',authors:'Mario Cerezo-Pizarro; Francisco-Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera; Jairo Melo-Sánchez',venue:'Education Sciences, 13(11), 1116',url:'https://doi.org/10.3390/educsci13111116',doi:'10.3390/educsci13111116',type:'Artículo',line:'l1'},
+{year:2023,title:'Efectos socioeducativos de una infrarrepresentación de las mujeres en la cultura gamer: una revisión de la literatura',authors:'Jairo Melo-Sánchez; Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera; Mario Cerezo-Pizarro',venue:'Qurriculum, 36, 61–86',url:'https://doi.org/10.25145/j.qurricul.2023.36.04',doi:'10.25145/j.qurricul.2023.36.04',type:'Artículo',line:'l1'},
+{year:2023,title:'Forge of Destiny. Diseño de un videojuego para el tratamiento de la desinformación',venue:'XXX Jornadas Internacionales de Tecnología Educativa',url:'https://investigacion.unir.net/investigadores/2410719/publicaciones',type:'Comunicación',line:'l1'},
+{year:2023,title:'Hacia una educación inclusiva mediante el uso de videojuegos culturales: Moss: una propuesta periférica',venue:'En digital: experiencias y reflexiones para el uso de la tecnología en educación',url:'https://investigacion.unir.net/investigadores/2410719/publicaciones',type:'Capítulo de libro',line:'l1'},
+{year:2023,title:'Impresión 3D. Una experiencia en el aula del futuro para la formación inicial del profesorado de educación primaria',venue:'Modalidades de aprendizaje para la innovación educativa',url:'https://investigacion.unir.net/investigadores/2410719/publicaciones',type:'Capítulo de libro',line:'l3'},
+{year:2024,title:'Recursos educativos para el aula del futuro. Una experiencia STEM en la formación inicial del profesorado',authors:'Mario Cerezo-Pizarro; Alberto González-Fernández; Alain Presentación-Muñoz; Jesús Acevedo-Borrega',venue:'Calidad e innovación pedagógica: Experiencias docentes y tecnológicas aplicadas al aula, pp. 1798–1815. Dykinson',url:'https://dehesa.unex.es/server/api/core/bitstreams/d247099c-ed77-4591-b778-2784fc449e3f/content',type:'Capítulo de libro',line:'l3'},
+{year:2023,title:'Los videojuegos en las aulas del futuro. Un enfoque pedagógico lúdico en educación superior',authors:'María Rosa Fernández-Sánchez; Noelia Durán-Rodríguez; Mario Cerezo-Pizarro',venue:'Modalidades de Aprendizaje para la Innovación Educativa, pp. 299–305. Servicio de Publicaciones de la Universidad de Oviedo',url:'https://www.researchgate.net/publication/374756751_Los_videojuegos_en_las_aulas_del_futuro_Un_enfoque_pedagogico_ludico_en_educacion_superior',type:'Capítulo de libro',line:'l1'},
+{year:2023,title:'Hacia una educación inclusiva mediante el uso de videojuegos culturales. Moss: una propuesta periférica',authors:'Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera; Mario Cerezo-Pizarro; Jairo Melo-Sánchez',venue:'En digital: experiencias y reflexiones para el uso de la tecnología en educación. Dykinson',url:'https://www.researchgate.net/publication/369204014_Hacia_una_educacion_inclusiva_mediante_el_uso_de_videojuegos_culturales_Moss_Una_propuesta_periferica',type:'Capítulo de libro',line:'l1'},
+{year:2023,title:'Proyecto de gamificación en la formación de educadores a través del Aula del Futuro',authors:'Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera; Mario Cerezo-Pizarro; otros',venue:'Capítulo de libro',url:'https://www.researchgate.net/profile/Mario-Cerezo-Pizarro-2',type:'Capítulo de libro',line:'l2'},
+{year:2023,title:'El impacto de las tecnologías de la información y la comunicación sobre el rendimiento académico',authors:'Jesús Valverde-Berrocoso; Jesús Acevedo-Borrega; Mario Cerezo-Pizarro',venue:'Educación digital y pensamiento de diseño. Editorial Síntesis',url:'https://www.researchgate.net/profile/Mario-Cerezo-Pizarro-2',type:'Capítulo de libro',line:'l2'},
+{year:2022,title:'Videojuegos culturales como herramienta de inclusión educativa. El videojuego Moss',authors:'Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera; Mario Cerezo-Pizarro; Jairo Melo-Sánchez',venue:'REIDOCREA, 11(53), 613–622',url:'https://doi.org/10.30827/Digibug.77645',doi:'10.30827/Digibug.77645',type:'Artículo',line:'l1'},
+{year:2022,title:'La dimensión cultural en los videojuegos. Un análisis de la industria desde una perspectiva periférica',authors:'Francisco Ignacio Revuelta-Domínguez; Jorge Guerra-Antequera; Mario Cerezo-Pizarro; Jairo Melo-Sánchez',venue:'Capítulo de libro',url:'https://www.researchgate.net/profile/Mario-Cerezo-Pizarro-2',type:'Capítulo de libro',line:'l1'},
+{year:2022,title:'Educational Technology and Student Performance: A Systematic Review',authors:'Jesús Valverde-Berrocoso; Jesús Acevedo-Borrega; Mario Cerezo-Pizarro',venue:'Frontiers in Education, 7, 916502',url:'https://doi.org/10.3389/feduc.2022.916502',doi:'10.3389/feduc.2022.916502',type:'Artículo',line:'l2'},
+{year:2022,title:'Data SRL EdTech & Academic Achievement',authors:'Jesús Valverde-Berrocoso; Jesús Acevedo-Borrega; Mario Cerezo-Pizarro',venue:'Zenodo · Datos de revisión sistemática vinculados a Frontiers in Education, 7, 916502',url:'https://doi.org/10.5281/zenodo.6426878',doi:'10.5281/zenodo.6426878',type:'Conjunto de datos',repository:'Zenodo',license:'CC BY 4.0',related:'Educational Technology and Student Performance: A Systematic Review',line:'l2'},
+{year:2021,title:'Flipped Classroom in the Context of Higher Education: Learning, Satisfaction and Interaction',authors:'María José Sosa Díaz; Jorge Guerra Antequera; Mario Cerezo Pizarro',venue:'Education Sciences, 11(8), 416',url:'https://doi.org/10.3390/educsci11080416',doi:'10.3390/educsci11080416',type:'Artículo',line:'l2'}
+];
+const labels={l1:'Videojuegos, cultura y educación',l2:'Tecnología educativa y cultura digital',l3:'Tecnologías emergentes y experiencias inmersivas',l4:'Aprendizaje activo, situado e informal'};
+function classify(title,concepts=[]){const x=(title+' '+concepts.join(' ')).toLowerCase();if(/geocach|earthcache|situad|informal|territor|media literacy|educación mediática/.test(x))return'l4';if(/realidad virtual|virtual reality|augmented|realidad aumentada|3d|stem|maker|fabricación|future classroom|aula del futuro|drone/.test(x))return'l3';if(/videoj|video game|videogame|gaming|gamer|steam|assassin|cultural game|gamif|serious game|moss|forge of destiny/.test(x))return'l1';return'l2'}
+function esc(x){return String(x||'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+let pubs=[];let current='all';
+function normalizeType(p){
+ const t=(p.type||'').toLowerCase();
+ if(t==='dataset') return 'Conjunto de datos';
+ if(t==='preprint') return 'Preprint';
+ if(t==='article'||t==='journal-article') return 'Artículo científico';
+ if(t==='book-chapter'||t==='book chapter') return 'Capítulo de libro';
+ if(t==='book') return 'Libro';
+ if(t==='dissertation') return 'Tesis';
+ if(t==='review') return 'Reseña';
+ return p.type||'Otro resultado';
+}
+function render(){const list=document.getElementById('pub-list');const items=pubs.filter(p=>current==='all'||p.line===current).sort((a,b)=>b.year-a.year||a.title.localeCompare(b.title));list.innerHTML=items.map(p=>`<article class="pub" data-line="${p.line}"><div class="year">${p.year||'—'}</div><div><h3>${esc(p.title)}</h3>${p.authors?`<p><strong>${esc(p.authors)}</strong></p>`:''}<p>${esc(p.venue||'')}</p><div class="ptags"><span class="ptag">${labels[p.line]}</span><span class="ptag">${esc(normalizeType(p))}</span>${p.repository?`<span class="ptag">${esc(p.repository)}</span>`:''}${p.license?`<span class="ptag">${esc(p.license)}</span>`:''}${p.doi?`<span class="ptag">DOI: ${esc(p.doi)}</span>`:''}${p.related?`<span class="ptag">Relacionado con: ${esc(p.related)}</span>`:''}</div></div><a class="arrow" href="${esc(p.url||'#')}" target="_blank" rel="noopener" aria-label="Abrir publicación mediante DOI o URL" title="${p.doi?'Abrir DOI':'Abrir URL'}">↗</a></article>`).join('')||'<p>No hay resultados en este filtro.</p>'}
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');current=b.dataset.filter;render()}));
+async function loadPubs(){const status=document.getElementById('pub-status');try{const api=`https://api.openalex.org/works?filter=author.orcid:${ORCID}&per-page=100&sort=publication_date:desc`;const r=await fetch(api);if(!r.ok)throw Error('OpenAlex');const data=await r.json();const live=(data.results||[]).map(w=>{const concepts=(w.topics||[]).map(t=>t.display_name);const doi=(w.doi||'').replace('https://doi.org/','');const authors=(w.authorships||[]).map(a=>a.author?.display_name).filter(Boolean).join('; ');return{year:w.publication_year,title:w.display_name,authors,venue:w.primary_location?.source?.display_name||w.type_crossref||'',url:w.doi||w.primary_location?.landing_page_url||w.id,doi,type:w.type,line:classify(w.display_name,concepts)}});const key=x=>x.title.toLowerCase().replace(/[^a-z0-9áéíóúüñ]+/g,' ').trim();const map=new Map(live.map(x=>[key(x),x]));fallback.forEach(x=>map.set(key(x),x));pubs=[...map.values()];status.textContent=`${pubs.length} resultados mostrados · actualización automática vía OpenAlex (ORCID ${ORCID}) · respaldo institucional de UNIR · perfiles complementarios enlazados: Scholar, Scopus, ResearchGate y Dialnet.`}catch(e){pubs=fallback;status.textContent='Mostrando selección verificada con el perfil institucional de UNIR. La actualización automática vía OpenAlex no está disponible en este momento.'}render()}
+loadPubs();
+</script></body></html>
