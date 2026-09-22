@@ -582,6 +582,19 @@ function mergePublicationSets(auto){
  fallback.forEach(p=>add(p,true));
  return [...records.values()]
 }
+function isAutoPublication(p){
+ const year=Number(p&&p.year||0);
+ if(year<2026)return false;
+ const t=String(p&&p.type||'').toLowerCase();
+ return [
+  'article','journal-article','artículo científico','artículo',
+  'book-review','review','reseña','peer-review',
+  'book-chapter','book chapter','capítulo de libro',
+  'book','libro','dissertation','thesis','tesis',
+  'preprint','report','informe','conference-paper',
+  'proceedings-article','comunicación'
+ ].some(x=>t===x||t.includes(x))
+}
 async function fetchLiveOpenAlex(){
  const api='https://api.openalex.org/works?filter=author.orcid:'+encodeURIComponent(ORCID)+'&per-page=100&sort=publication_date:desc';
  const r=await fetch(api);
@@ -602,14 +615,14 @@ async function loadPubs(){
   const data=await r.json();
   const auto=Array.isArray(data)?data:(data.items||[]);
   if(!auto.length)throw Error('archivo automático vacío');
-  pubs=mergePublicationSets(auto);
+  pubs=mergePublicationSets(auto.filter(isAutoPublication));
   const stamp=data.generated_at?new Date(data.generated_at).toLocaleDateString('es-ES'):'fecha no disponible';
   const sourceNames=data.sources&&typeof data.sources==='object'?Object.entries(data.sources).filter(([,v])=>v&&v.ok).map(([k])=>k).join(' + '):'OpenAlex';
   status.textContent=pubs.length+' resultados mostrados · catálogo manual preservado · actualización automática en GitHub ('+(sourceNames||'OpenAlex')+', última comprobación '+stamp+') · ORCID '+ORCID+'.';
  }catch(e){
   try{
    const live=await fetchLiveOpenAlex();
-   pubs=mergePublicationSets(live);
+   pubs=mergePublicationSets(live.filter(isAutoPublication));
    status.textContent=pubs.length+' resultados mostrados · catálogo manual preservado · consulta de respaldo en tiempo real vía OpenAlex (ORCID '+ORCID+').';
   }catch(err){
    pubs=fallback;
