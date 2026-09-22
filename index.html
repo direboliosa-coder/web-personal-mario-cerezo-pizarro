@@ -170,7 +170,7 @@ body.lightbox-open{overflow:hidden}
 .music-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:3px 4px 9px;color:#fff}
 .music-panel-title{min-width:0}.music-panel-title strong{display:block;font-size:12px;line-height:1.25}.music-panel-title span{display:block;margin-top:2px;color:#b9dffa;font-size:10px}
 .music-close{appearance:none;border:0;background:transparent;color:#fff;width:30px;height:30px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer}.music-close:hover{background:rgba(255,255,255,.12)}.music-close:focus-visible{outline:2px solid #55c4ff}
-.music-frame{display:block;width:100%;aspect-ratio:16/9;height:auto;border:0;border-radius:12px;overflow:hidden;background:#121212}
+.music-frame{display:block;width:100%;height:352px;border:0;border-radius:12px;overflow:hidden;background:#121212}
 @media(max-width:600px){.music-widget{right:12px;bottom:12px}.music-toggle{padding:9px 12px}.music-panel{width:min(340px,calc(100vw - 24px))}}
 @media(prefers-reduced-motion:reduce){.music-toggle{transition:none}}
 </style>
@@ -556,12 +556,12 @@ body.lightbox-open{overflow:hidden}
 <div class="music-widget" id="music-widget">
   <div class="music-panel" id="music-panel" hidden>
     <div class="music-panel-head">
-      <div class="music-panel-title"><strong>Inner Light</strong><span>Elderbrook &amp; Bob Moses · vídeo oficial</span></div>
+      <div class="music-panel-title"><strong>Playlist</strong><span>Spotify · selección musical</span></div>
       <button class="music-close" id="music-close" type="button" aria-label="Cerrar reproductor">×</button>
     </div>
-    <iframe class="music-frame" src="https://www.youtube-nocookie.com/embed/4DPCHufDWJQ?rel=0" title="Inner Light de Elderbrook y Bob Moses · vídeo oficial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe class="music-frame" data-testid="embed-iframe" src="https://open.spotify.com/embed/playlist/3LGrCEgfpOTJIyE6Dt1q4z?utm_source=generator&si=9a6b13e4a79c466a" title="Playlist de Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
   </div>
-  <button class="music-toggle" id="music-toggle" type="button" aria-controls="music-panel" aria-expanded="false"><span class="music-toggle-icon" aria-hidden="true">♫</span><span>Inner Light</span></button>
+  <button class="music-toggle" id="music-toggle" type="button" aria-controls="music-panel" aria-expanded="false"><span class="music-toggle-icon" aria-hidden="true">♫</span><span>Música</span></button>
 </div>
 <footer><div class="wrap foot"><span>© 2026 Mario Cerezo-Pizarro</span><span>No me molestes, estoy aprendiendo.</span><span class="visit-counter" title="Visitas registradas en el sitio"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z" fill="#55c4ff" stroke="#0752a0" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="#0752a0"/><circle cx="13.1" cy="10.9" r="1" fill="#fff"/></svg><span><strong id="visit-count">—</strong> visitas</span></span></div></footer>
 <script>
@@ -573,7 +573,7 @@ body.lightbox-open{overflow:hidden}
   function setOpen(open){
     panel.hidden=!open;
     toggle.setAttribute('aria-expanded',String(open));
-    toggle.querySelector('span:last-child').textContent=open?'Ocultar música':'Inner Light';
+    toggle.querySelector('span:last-child').textContent=open?'Ocultar música':'Música';
     if(open)close?.focus();
   }
   toggle.addEventListener('click',()=>setOpen(panel.hidden));
