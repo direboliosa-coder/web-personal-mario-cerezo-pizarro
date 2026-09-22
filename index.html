@@ -564,6 +564,59 @@ function normalizeType(p){
 }
 function render(){const list=document.getElementById('pub-list');const items=pubs.filter(p=>current==='all'||p.line===current).sort((a,b)=>b.year-a.year||a.title.localeCompare(b.title));list.innerHTML=items.map(p=>`<article class="pub" data-line="${p.line}"><div class="year">${p.year||'—'}</div><div><h3>${esc(p.title)}</h3>${p.authors?`<p><strong>${esc(p.authors)}</strong></p>`:''}<p>${esc(p.venue||'')}</p><div class="ptags"><span class="ptag">${labels[p.line]}</span><span class="ptag">${esc(normalizeType(p))}</span>${p.repository?`<span class="ptag">${esc(p.repository)}</span>`:''}${p.license?`<span class="ptag">${esc(p.license)}</span>`:''}${p.doi?`<span class="ptag">DOI: ${esc(p.doi)}</span>`:''}${p.related?`<span class="ptag">Relacionado con: ${esc(p.related)}</span>`:''}</div></div><a class="arrow" href="${esc(p.url||'#')}" target="_blank" rel="noopener" aria-label="Abrir publicación mediante DOI o URL" title="${p.doi?'Abrir DOI':'Abrir URL'}">↗</a></article>`).join('')||'<p>No hay resultados en este filtro.</p>'}
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');current=b.dataset.filter;render()}));
-async function loadPubs(){const status=document.getElementById('pub-status');try{const api=`https://api.openalex.org/works?filter=author.orcid:${ORCID}&per-page=100&sort=publication_date:desc`;const r=await fetch(api);if(!r.ok)throw Error('OpenAlex');const data=await r.json();const live=(data.results||[]).map(w=>{const concepts=(w.topics||[]).map(t=>t.display_name);const doi=(w.doi||'').replace('https://doi.org/','');const authors=(w.authorships||[]).map(a=>a.author?.display_name).filter(Boolean).join('; ');return{year:w.publication_year,title:w.display_name,authors,venue:w.primary_location?.source?.display_name||w.type_crossref||'',url:w.doi||w.primary_location?.landing_page_url||w.id,doi,type:w.type,line:classify(w.display_name,concepts)}});const key=x=>x.title.toLowerCase().replace(/[^a-z0-9áéíóúüñ]+/g,' ').trim();const map=new Map(live.map(x=>[key(x),x]));fallback.forEach(x=>map.set(key(x),x));pubs=[...map.values()];status.textContent=`${pubs.length} resultados mostrados · actualización automática vía OpenAlex (ORCID ${ORCID}) · respaldo institucional de UNIR · perfiles complementarios enlazados: Scholar, Scopus, ResearchGate y Dialnet.`}catch(e){pubs=fallback;status.textContent='Mostrando selección verificada con el perfil institucional de UNIR. La actualización automática vía OpenAlex no está disponible en este momento.'}render()}
+function pubTitleKey(p){
+ return String((p&&p.title)||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim()
+}
+function mergePublicationSets(auto){
+ const records=new Map(),doiIndex=new Map(),titleIndex=new Map();
+ function add(p,manual){
+  if(!p||!p.title)return;
+  const doi=String(p.doi||'').toLowerCase().replace(/^https?:\/\/(?:dx\.)?doi\.org\//,'').replace(/\/$/,'').trim();
+  const title=pubTitleKey(p);
+  let key=(doi&&doiIndex.get(doi))||(title&&titleIndex.get(title))||(doi?'doi:'+doi:'title:'+title);
+  if(!records.has(key)||manual)records.set(key,p);
+  if(doi)doiIndex.set(doi,key);
+  if(title)titleIndex.set(title,key);
+ }
+ (auto||[]).forEach(p=>add(p,false));
+ fallback.forEach(p=>add(p,true));
+ return [...records.values()]
+}
+async function fetchLiveOpenAlex(){
+ const api='https://api.openalex.org/works?filter=author.orcid:'+encodeURIComponent(ORCID)+'&per-page=100&sort=publication_date:desc';
+ const r=await fetch(api);
+ if(!r.ok)throw Error('OpenAlex');
+ const data=await r.json();
+ return (data.results||[]).map(w=>{
+  const concepts=(w.topics||[]).map(t=>t.display_name);
+  const doi=(w.doi||'').replace('https://doi.org/','');
+  const authors=(w.authorships||[]).map(a=>a.author&&a.author.display_name).filter(Boolean).join('; ');
+  return{year:w.publication_year,title:w.display_name,authors,venue:(w.primary_location&&w.primary_location.source&&w.primary_location.source.display_name)||w.type_crossref||'',url:w.doi||(w.primary_location&&w.primary_location.landing_page_url)||w.id,doi,type:w.type,line:classify(w.display_name,concepts)}
+ })
+}
+async function loadPubs(){
+ const status=document.getElementById('pub-status');
+ try{
+  const r=await fetch('data/publications-auto.json?ts='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw Error('archivo automático');
+  const data=await r.json();
+  const auto=Array.isArray(data)?data:(data.items||[]);
+  if(!auto.length)throw Error('archivo automático vacío');
+  pubs=mergePublicationSets(auto);
+  const stamp=data.generated_at?new Date(data.generated_at).toLocaleDateString('es-ES'):'fecha no disponible';
+  const sourceNames=data.sources&&typeof data.sources==='object'?Object.entries(data.sources).filter(([,v])=>v&&v.ok).map(([k])=>k).join(' + '):'OpenAlex';
+  status.textContent=pubs.length+' resultados mostrados · catálogo manual preservado · actualización automática en GitHub ('+(sourceNames||'OpenAlex')+', última comprobación '+stamp+') · ORCID '+ORCID+'.';
+ }catch(e){
+  try{
+   const live=await fetchLiveOpenAlex();
+   pubs=mergePublicationSets(live);
+   status.textContent=pubs.length+' resultados mostrados · catálogo manual preservado · consulta de respaldo en tiempo real vía OpenAlex (ORCID '+ORCID+').';
+  }catch(err){
+   pubs=fallback;
+   status.textContent='Mostrando el catálogo verificado manualmente. La fuente automática no está disponible en este momento.';
+  }
+ }
+ render()
+}
 loadPubs();
 </script></body></html>
