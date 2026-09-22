@@ -14,6 +14,12 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
 .cuaderno{background:var(--navy);color:#fff}.journal{display:grid;grid-template-columns:1fr 1.2fr;gap:55px;align-items:center}.journal-art{min-height:300px;border-radius:28px;background:linear-gradient(135deg,#006fcd,#001b3d);display:grid;place-items:center;position:relative;overflow:hidden}.journal-art:before{content:"Ideas de hoy\A para la educación\A de mañana.  :)";white-space:pre;font:600 27px/1.45 cursive;transform:rotate(-6deg);background:#fff;color:#122b45;padding:35px 45px;border-radius:8px;box-shadow:0 18px 45px rgba(0,0,0,.22)}.journal h2{font-size:43px;line-height:1.05;margin:9px 0 15px}.journal p{color:#d6eaff;max-width:620px}.journal .btn{background:#fff;color:var(--deep);border-color:#fff;display:inline-block;margin-top:8px}
 .quote{text-align:center;padding:48px 20px;background:#f5fbff;color:#28415a;font:italic 18px Georgia,serif}.signature-symbols{display:block;width:min(720px,88vw);max-height:230px;object-fit:contain;margin:24px auto 0}.symbols{display:none}footer{background:#fff;padding:30px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between}
 @media(max-width:950px){.links{display:none}.source-panel{grid-template-columns:1fr}.research-lines{grid-template-columns:1fr}.intro-grid{grid-template-columns:1fr;text-align:center}.portrait{margin:auto}.avatar{max-height:350px}.actions{justify-content:center}.section-head{grid-template-columns:1fr}.area-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}.journal{grid-template-columns:1fr}.hero:before{font-size:55px}.pub{grid-template-columns:65px 1fr}.arrow{display:none}}@media(max-width:520px){.wrap{width:min(100% - 28px,1200px)}.area-grid{grid-template-columns:1fr 1fr}.hero-logo{width:100%}.hero{min-height:75vh}.portrait{width:210px}.journal-art:before{font-size:21px;padding:28px}}
+
+/* Portada editorial: solo las cinco entradas más recientes; el histórico conserva todas. */
+.entry-stream .note-card:nth-child(n+6){display:none}
+.archive-action{display:flex;justify-content:center;margin-top:24px}
+.archive-action a{display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:999px;background:#0752a0;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 8px 22px rgba(0,67,156,.14);transition:transform .18s ease,background .18s ease}
+.archive-action a:hover{transform:translateY(-2px);background:#00439c}
 </style>
 <style>
 #proyectos .section-lead{max-width:780px;color:var(--muted,#65758b);line-height:1.7}
@@ -402,7 +408,7 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
     <h2>¿Qué estoy pensando?</h2>
     <p>Ideas, novedades y experiencias sobre educación, tecnología y cultura digital. Un espacio para compartir aquello en lo que trabajo, investigo, participo y sigo aprendiendo.</p>
   </div>
-  <div class="cuaderno-grid">
+  <div class="cuaderno-grid entry-stream">
     <article class="note-card note-featured">
       <div class="note-meta"><span>DIVULGACIÓN CIENTÍFICA · IMPRESIÓN 3D</span><span>LinkedIn · 22/09/2026</span></div>
       <h3>La Noche Europea de los Investigadores e Investigadoras</h3>
@@ -436,6 +442,7 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
       <a href="https://es.linkedin.com/in/mario-cerezo-pizarro-4a4b18138" target="_blank" rel="noopener">Seguir mis publicaciones en LinkedIn ↗</a>
     </article>
   </div>
+  <div class="archive-action"><a href="pensamientos.html">Ver todas las reflexiones <span aria-hidden="true">→</span></a></div>
 </section>
 
 <section class="cuaderno section" id="jugando">
@@ -444,13 +451,14 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
     <h2>¿A qué estoy jugando?</h2>
     <p>Los videojuegos forman parte de mi vida más allá de la investigación y la docencia. Este espacio recoge aquello a lo que estoy jugando, las experiencias que me deja cada título y algunas ideas que aparecen mientras juego.</p>
   </div>
-  <div class="cuaderno-grid">
+  <div class="cuaderno-grid entry-stream">
     <article class="note-card note-featured">
       <div class="note-meta"><span>JUGANDO AHORA · VIDEOJUEGOS</span><span>PlayStation · Septiembre 2026</span></div>
       <h3>Death Stranding 2: la prisa no es un buen aliado</h3>
       <p>Este mes estoy jugando a <strong>Death Stranding 2</strong> en PlayStation. Al igual que en la primera entrega, sorprende y gusta por sus mecánicas: aquí la prisa no es un buen aliado. Su narrativa es profundamente sorprendente y contar con actores reales supone un plus enorme para la inmersión. He buscado alcanzar el Platino para descubrir todo lo que los desarrolladores habían pensado para nosotros. Una obra maestra de Kojima que redefine la forma en la que nos relacionamos con los videojuegos. <strong>¡Soy Sam!</strong></p>
     </article>
   </div>
+  <div class="archive-action"><a href="jugando.html">Ver todo mi historial de juego <span aria-hidden="true">→</span></a></div>
 </section>
 
 <div class="quote">Investigar. Crear. Compartir. Seguir aprendiendo.<div style="font:12px system-ui;margin-top:10px">No me molestes, estoy aprendiendo.</div><img class="signature-symbols" src="IMG_2535.PNG" alt="Ilustraciones personales: construcción, persona, creatividad y libro"></div></main>
