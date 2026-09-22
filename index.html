@@ -87,14 +87,14 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
 
 <style>
 .contact-section{padding-top:28px;padding-bottom:70px}
-.contact-card{display:flex;justify-content:space-between;align-items:center;gap:34px;padding:36px;border-radius:26px;background:linear-gradient(135deg,#eef7ff,#fff);border:1px solid #cfe3f6;box-shadow:0 16px 40px rgba(0,67,156,.08)}
+.contact-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:28px;padding:36px;border-radius:26px;background:linear-gradient(135deg,#eef7ff,#fff);border:1px solid #cfe3f6;box-shadow:0 16px 40px rgba(0,67,156,.08)}
 .contact-card h2{font-size:clamp(32px,4vw,48px);margin:6px 0 10px;color:#123052}
-.contact-card p{max-width:760px;color:#617186;line-height:1.7}
+.contact-card p{max-width:none;color:#617186;line-height:1.7}
 .contact-mails{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .contact-mails a{padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #d8e7f5;color:#004f9e;text-decoration:none;font-weight:800;font-size:13px}
 .contact-mails small{font-weight:700;color:#75879a;margin-left:5px}
 .contact-action{white-space:nowrap;background:#006fcd;color:#fff;padding:14px 18px;border-radius:13px;text-decoration:none;font-weight:900;font-size:13px}
-@media(max-width:800px){.contact-card{align-items:flex-start;flex-direction:column}}
+@media(max-width:800px){.contact-card{grid-template-columns:1fr;align-items:flex-start}}
 </style>
 
 
