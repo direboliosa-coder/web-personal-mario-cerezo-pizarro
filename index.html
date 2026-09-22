@@ -32,6 +32,16 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
 .project-link{display:inline-block;margin-top:16px;color:#006FCD;font-weight:700;text-decoration:none}
 .project-card small{display:block;margin-top:14px;color:#7b8796;line-height:1.5}
 .project-separator{margin-top:42px;padding:30px;border:1px dashed #b7cee5;border-radius:20px;background:#f8fbff}.project-separator span{font-size:11px;letter-spacing:.12em;font-weight:800;color:#006FCD}.project-separator h3{margin:8px 0}
+
+.initiatives-wrap{margin-top:34px;padding:30px;border:1px solid #d9e8f7;border-radius:28px;background:linear-gradient(180deg,#f8fbff 0%,#fff 100%);box-shadow:0 16px 46px rgba(0,67,156,.07)}
+.initiatives-wrap .project-separator{margin-top:0;padding-top:0;border-top:0}
+.initiative-panel{margin-top:28px;padding:26px;border-radius:22px;background:#fff;border:1px solid #dfeaf5;box-shadow:0 10px 30px rgba(0,67,156,.06)}
+.initiative-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}.initiative-head .site-icon{width:46px;height:46px;flex:0 0 46px}.initiative-head h3{margin:2px 0 6px}.initiative-head p{margin:0;color:#52677c}
+.initiative-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.initiative-stat{padding:16px 18px;border-radius:18px;background:#eef7ff;border:1px solid #d4eaff}.initiative-stat strong{display:block;font-size:2rem;line-height:1;color:#00439c}.initiative-stat span{display:block;margin-top:6px;color:#425b73;font-weight:700}
+.initiative-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.initiative-tags span{padding:7px 11px;border-radius:999px;background:#edf6ff;color:#0752a0;font-size:.88rem;font-weight:700}
+.initiative-quote{margin:18px 0 0;padding:15px 18px;border-left:4px solid #168ee8;border-radius:0 14px 14px 0;background:#f4faff;font-weight:800;color:#0752a0}
+.initiative-cta{margin-top:18px;padding:16px 18px;border-radius:16px;background:#0752a0;color:#fff}.initiative-cta strong{display:block;margin-bottom:4px}.initiative-cta a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){.initiatives-wrap{padding:20px}.initiative-stats{grid-template-columns:1fr}}
 @media(max-width:760px){.project-timeline{grid-template-columns:1fr}.project-card.current{grid-column:auto}.project-meta{grid-template-columns:1fr}}
 </style>
 
@@ -180,9 +190,10 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
     </article>
   </div>
 
+  <div class="initiatives-wrap">
   <div class="project-separator">
 <span>OTRAS INICIATIVAS</span><h3>Innovación, transferencia y experiencias</h3>
-<p>Resultados y desarrollos que nacen de la investigación, la colaboración y la experimentación educativa, diferenciados de los proyectos oficiales financiados.</p>
+<p>Una segunda dimensión de mi actividad dentro de Proyectos: desarrollos, divulgación y experiencias que conectan investigación, colaboración, creación y aprendizaje más allá de los proyectos financiados.</p>
 </div>
 <div class="games-showcase">
   <div class="games-head">
@@ -222,6 +233,22 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
       </div>
     </article>
   </div>
+</div>
+<div class="initiative-panel">
+  <div class="initiative-head"><svg class="site-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M25 8h14M29 8v17L15 49c-2 4 1 7 5 7h24c4 0 7-3 5-7L35 25V8" fill="#eaf7ff" stroke="#0752a0" stroke-width="4" stroke-linejoin="round"/><path d="M20 44h24l5 9H15z" fill="#55c4ff"/><circle cx="27" cy="38" r="3" fill="#168ee8"/><circle cx="38" cy="46" r="3" fill="#7bd35a"/><circle cx="34" cy="34" r="2.5" fill="#ffbf3f"/></svg><div><span class="eyebrow">Conocimiento abierto a la sociedad</span><h3>Divulgación científica: aprender haciendo</h3><p>Actividades dentro y fuera de la Universidad para acercar investigación, educación y tecnología a públicos diversos.</p></div></div>
+  <p>Entiendo la divulgación científica como una oportunidad para acercar el conocimiento, la investigación y la tecnología a la sociedad desde la experimentación y el aprendizaje activo. A lo largo de los últimos años he participado en actividades de divulgación dirigidas a públicos de diferentes edades, especialmente mediante experiencias relacionadas con videojuegos, inteligencia artificial, realidad aumentada, robótica, impresión 3D y otras tecnologías emergentes.</p>
+  <p>Buena parte de estas experiencias se han desarrollado en colaboración con el <strong>Servicio de Difusión de la Cultura Científica de la Universidad de Extremadura</strong>, junto a otras propuestas surgidas de iniciativas privadas, colaboraciones y actividades desarrolladas a título personal. Todas comparten una misma idea: convertir la tecnología en una oportunidad para experimentar, crear y aprender.</p>
+  <div class="initiative-tags"><span>Cultura científica UEx</span><span>Videojuegos</span><span>IA</span><span>Realidad aumentada</span><span>Robótica</span><span>Impresión 3D</span></div>
+  <div class="initiative-cta"><strong>¿Colaboramos?</strong>Estoy abierto a colaborar con <strong>centros educativos y otras entidades</strong> interesados en desarrollar actividades de divulgación, talleres o experiencias relacionadas con tecnología educativa, videojuegos, fabricación digital y tecnologías emergentes. <a href="#contacto">Contactar →</a></div>
+</div>
+<div class="initiative-panel">
+  <div class="initiative-head"><svg class="site-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="24" fill="#55c4ff" stroke="#0752a0" stroke-width="4"/><path d="M8 32h48M32 8c8 7 12 15 12 24S40 49 32 56M32 8c-8 7-12 15-12 24s4 17 12 24M15 20h34M15 44h34" fill="none" stroke="#f8fbff" stroke-width="2.5" stroke-linecap="round"/></svg><div><span class="eyebrow">Geología · geolocalización · aprendizaje situado</span><h3>EarthCaches: aprender descubriendo</h3><p>Explorar el territorio como una forma de enseñar, aprender y despertar la curiosidad por las ciencias de la Tierra.</p></div></div>
+  <div class="initiative-stats"><div class="initiative-stat"><strong>323</strong><span>geocachés escondidos como Pencilsfinders</span></div><div class="initiative-stat"><strong>128</strong><span>EarthCaches creados: geocachés que implican aprendizaje</span></div></div>
+  <p>Bajo el nombre <strong>Pencilsfinders</strong> he escondido geocachés repartidos por diferentes lugares del mundo, con una presencia especialmente significativa en Extremadura. De ellos, 128 son <strong>EarthCaches</strong>: una modalidad en la que descubrir un lugar implica observar, interpretar y aprender sobre las ciencias de la Tierra.</p>
+  <p>Mi interés por los EarthCaches nace de una pasión personal por la <strong>Geología</strong> y de la convicción de que explorar el territorio puede convertirse en una extraordinaria forma de enseñar y aprender. Esta actividad conecta actualmente con una línea de investigación en torno al <strong>aprendizaje situado, la educación informal y el uso educativo de tecnologías de geolocalización</strong>.</p>
+  <p>El programa <strong>EarthCache</strong>, desarrollado por la Geological Society of America (GSA) en colaboración con Geocaching, utiliza el geocaching para promover el conocimiento de las ciencias de la Tierra mediante experiencias vinculadas directamente con el territorio.</p>
+  <div class="initiative-quote">¿Mi EarthCache favorito? El próximo por descubrir.</div>
+</div>
 </div>
 </section>
 
