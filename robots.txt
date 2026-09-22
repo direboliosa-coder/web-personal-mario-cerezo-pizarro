@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://direboliosa-coder.github.io/web-personal-mario-cerezo-pizarro/sitemap.xml
