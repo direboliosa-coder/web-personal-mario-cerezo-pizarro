@@ -7,7 +7,7 @@ import sys
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
@@ -17,6 +17,7 @@ USER_AGENT = "MarioCerezoAcademicWebsite/1.0 (+https://direboliosa-coder.github.
 
 OPENALEX_URL = "https://api.openalex.org/works"
 ZENODO_URL = "https://zenodo.org/api/records"
+DATACITE_URL = "https://api.datacite.org/dois/"
 
 
 def request_json(url: str, params: dict[str, object]) -> dict:
@@ -77,10 +78,55 @@ def openalex_type(raw: object) -> str:
         "dissertation": "Tesis",
         "preprint": "Preprint",
         "review": "Reseña",
+        "book-review": "Reseña",
+        "peer-review": "Reseña",
         "editorial": "Editorial",
         "letter": "Carta",
     }.get(t, clean_text(raw) or "Otro resultado")
 
+
+
+def datacite_type(doi: str) -> str:
+    if not doi:
+        return ""
+    try:
+        req = Request(
+            DATACITE_URL + quote(doi, safe=""),
+            headers={"Accept": "application/vnd.api+json", "User-Agent": USER_AGENT},
+        )
+        with urlopen(req, timeout=20) as response:
+            data = json.loads(response.read().decode("utf-8"))
+        attrs = ((data.get("data") or {}).get("attributes") or {})
+        types = attrs.get("types") or {}
+        general = clean_text(types.get("resourceTypeGeneral")).lower()
+        specific = clean_text(types.get("resourceType")).lower()
+        combo = f"{general} {specific}"
+
+        if "dataset" in combo:
+            return "Conjunto de datos"
+        if "preprint" in combo:
+            return "Preprint"
+        if "journalarticle" in combo or "journal article" in combo:
+            return "Artículo científico"
+        if "bookchapter" in combo or "book chapter" in combo:
+            return "Capítulo de libro"
+        if general == "book":
+            return "Libro"
+        if "conferencepaper" in combo or "conference paper" in combo:
+            return "Comunicación"
+        if "dissertation" in combo or "thesis" in combo:
+            return "Tesis"
+        if "peerreview" in combo or "peer review" in combo:
+            return "Reseña"
+        if "report" in combo:
+            return "Informe"
+        if "software" in combo:
+            return "Software"
+        if general in {"text", "other", "collection", "image", "interactiveresource"}:
+            return "Material de investigación"
+        return ""
+    except Exception:
+        return ""
 
 def build_openalex_venue(work: dict) -> str:
     source = clean_text((((work.get("primary_location") or {}).get("source") or {}).get("display_name")))
@@ -129,6 +175,9 @@ def fetch_openalex() -> list[dict]:
                 continue
 
             doi = normalize_doi(work.get("doi"))
+            kind = openalex_type(work.get("type"))
+            if doi.startswith(("10.17605/", "10.6084/")):
+                kind = datacite_type(doi) or kind
             authors = "; ".join(
                 clean_text(((authorship.get("author") or {}).get("display_name")))
                 for authorship in (work.get("authorships") or [])
@@ -155,7 +204,7 @@ def fetch_openalex() -> list[dict]:
                     "venue": build_openalex_venue(work),
                     "url": url,
                     "doi": doi,
-                    "type": openalex_type(work.get("type")),
+                    "type": kind,
                     "line": classify(title, topics),
                     "source": "OpenAlex",
                 }
@@ -196,6 +245,10 @@ def zenodo_type(metadata: dict) -> str:
         return "Presentación"
     if "poster" in combo:
         return "Póster"
+    if "lesson" in combo:
+        return "Recurso educativo"
+    if "publication" in combo or "other" in combo:
+        return "Otro resultado"
     return clean_text(subtype or rtype) or "Otro resultado"
 
 
