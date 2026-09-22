@@ -158,6 +158,21 @@ section{padding:82px 0}.intro{background:linear-gradient(110deg,#eff9ff,#fff 58%
 body.lightbox-open{overflow:hidden}
 @media(max-width:700px){.image-lightbox{padding:10px}.image-lightbox-stage{grid-template-columns:38px minmax(0,1fr) 38px;gap:5px}.image-lightbox-nav{width:36px;height:48px;font-size:26px}.image-lightbox-img{max-height:72vh}.image-lightbox-caption{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.image-lightbox-img,.image-lightbox-close,.image-lightbox-nav{transition:none}}
+
+/* Reproductor musical flotante · Spotify */
+.music-widget{position:fixed;right:20px;bottom:20px;z-index:1200;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.music-toggle{appearance:none;border:1px solid rgba(0,67,156,.18);background:rgba(255,255,255,.96);color:#00439c;border-radius:999px;padding:10px 14px;display:inline-flex;align-items:center;gap:8px;font:800 12px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 10px 28px rgba(0,43,92,.16);cursor:pointer;backdrop-filter:blur(10px);transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.music-toggle:hover{transform:translateY(-2px);background:#eef8ff;box-shadow:0 14px 32px rgba(0,43,92,.2)}
+.music-toggle:focus-visible{outline:3px solid #55c4ff;outline-offset:3px}
+.music-toggle-icon{font-size:16px;line-height:1}
+.music-panel{width:min(360px,calc(100vw - 28px));padding:10px;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(0,27,61,.94);box-shadow:0 20px 55px rgba(0,20,45,.34);backdrop-filter:blur(14px);transform-origin:bottom right}
+.music-panel[hidden]{display:none!important}
+.music-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:3px 4px 9px;color:#fff}
+.music-panel-title{min-width:0}.music-panel-title strong{display:block;font-size:12px;line-height:1.25}.music-panel-title span{display:block;margin-top:2px;color:#b9dffa;font-size:10px}
+.music-close{appearance:none;border:0;background:transparent;color:#fff;width:30px;height:30px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer}.music-close:hover{background:rgba(255,255,255,.12)}.music-close:focus-visible{outline:2px solid #55c4ff}
+.music-frame{display:block;width:100%;height:152px;border:0;border-radius:12px;overflow:hidden;background:#121212}
+@media(max-width:600px){.music-widget{right:12px;bottom:12px}.music-toggle{padding:9px 12px}.music-panel{width:min(340px,calc(100vw - 24px))}}
+@media(prefers-reduced-motion:reduce){.music-toggle{transition:none}}
 </style>
 </head><body>
 <nav><div class="wrap navin"><a class="brand" href="#inicio"><span class="brand-avatar"><img src="mario-personaje.png" alt=""></span><span class="brand-text">MARIO CEREZO-PIZARRO<small>Educación · Tecnología · Cultura</small></span></a><div class="links"><a href="#inicio">Inicio</a><a href="#sobre-mi">Sobre mí</a><a href="#investigacion">Investigación</a><a href="#tesis">Tesis doctoral</a><a href="#publicaciones">Producción científica</a><a href="#proyectos">Proyectos</a><a href="#docencia">Docencia y transferencia</a><a href="#cuaderno">¿Qué estoy pensando?</a><a href="#jugando">¿A qué estoy jugando?</a><a href="#contacto">Contacto</a></div></div></nav>
@@ -537,7 +552,37 @@ body.lightbox-open{overflow:hidden}
 </section>
 
 <div class="quote">Investigar. Crear. Compartir. Seguir aprendiendo.<div style="font:12px system-ui;margin-top:10px">No me molestes, estoy aprendiendo.</div><img class="signature-symbols" src="IMG_2535.PNG" alt="Ilustraciones personales: construcción, persona, creatividad y libro"></div></main>
+
+<div class="music-widget" id="music-widget">
+  <div class="music-panel" id="music-panel" hidden>
+    <div class="music-panel-head">
+      <div class="music-panel-title"><strong>Inner Light</strong><span>Elderbrook &amp; Bob Moses · Spotify</span></div>
+      <button class="music-close" id="music-close" type="button" aria-label="Cerrar reproductor">×</button>
+    </div>
+    <iframe class="music-frame" src="https://open.spotify.com/embed/track/40tPP3K10yMZxwnT65REKj?utm_source=generator&theme=0" title="Inner Light de Elderbrook y Bob Moses en Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
+  <button class="music-toggle" id="music-toggle" type="button" aria-controls="music-panel" aria-expanded="false"><span class="music-toggle-icon" aria-hidden="true">♫</span><span>Inner Light</span></button>
+</div>
 <footer><div class="wrap foot"><span>© 2026 Mario Cerezo-Pizarro</span><span>No me molestes, estoy aprendiendo.</span><span class="visit-counter" title="Visitas registradas en el sitio"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z" fill="#55c4ff" stroke="#0752a0" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="#0752a0"/><circle cx="13.1" cy="10.9" r="1" fill="#fff"/></svg><span><strong id="visit-count">—</strong> visitas</span></span></div></footer>
+<script>
+(function(){
+  const toggle=document.getElementById('music-toggle');
+  const panel=document.getElementById('music-panel');
+  const close=document.getElementById('music-close');
+  if(!toggle||!panel)return;
+  function setOpen(open){
+    panel.hidden=!open;
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.querySelector('span:last-child').textContent=open?'Ocultar música':'Inner Light';
+    if(open)close?.focus();
+  }
+  toggle.addEventListener('click',()=>setOpen(panel.hidden));
+  close?.addEventListener('click',()=>{setOpen(false);toggle.focus()});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&!panel.hidden){setOpen(false);toggle.focus()}
+  });
+})();
+</script>
 <script data-goatcounter="https://mariocp.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 (function(){
