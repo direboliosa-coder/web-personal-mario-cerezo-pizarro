@@ -1,0 +1,46 @@
+name: Update publications
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/update_publications.py"
+      - ".github/workflows/update-publications.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publication-updates
+  cancel-in-progress: true
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh publication data
+        run: python scripts/update_publications.py
+
+      - name: Commit changes when needed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/publications-auto.json
+          if git diff --cached --quiet; then
+            echo "No publication changes detected."
+          else
+            git commit -m "Update publications automatically"
+            git push
+          fi
